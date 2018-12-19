@@ -3,14 +3,14 @@ package stack;
 public class Stack {
 
     private int[] stack = new int[10];
-    private  int index = -1;
+    private  int index = 0;
 
     public void push(int number) {
-        index++;
         stack[index] = number;
+        index++;
     }
 
     public int size() {
-        return index+1;
+        return index;
     }
 }
