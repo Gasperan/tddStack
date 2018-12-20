@@ -13,4 +13,9 @@ public class Stack {
     public int size() {
         return index;
     }
+
+
+    public int pop() {
+        return stack[--index];
+    }
 }
