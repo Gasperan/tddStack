@@ -2,8 +2,10 @@ package stack;
 
 import org.junit.Before;
 import org.junit.Test;
+import stack.exception.StackException;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.Assert.assertEquals;
 
 public class StackTest {
 
@@ -18,7 +20,7 @@ public class StackTest {
     public void pushOneElementToStack() {
         stack.push(1113);
 
-        assertEquals(1,stack.size());
+        assertEquals(1, stack.size());
     }
 
     @Test
@@ -26,7 +28,7 @@ public class StackTest {
         stack.push(112312);
         stack.push(4123132);
 
-        assertEquals(2,stack.size());
+        assertEquals(2, stack.size());
     }
 
     @Test
@@ -49,6 +51,13 @@ public class StackTest {
 
         assertEquals(34242, elementOne);
         assertEquals(112312, elementTwo);
+    }
+
+    @Test
+    public void handlePopException() {
+        assertThatThrownBy(() ->  stack.pop())
+                .hasMessage("Pila vacia, no puedes hacer pop por ahora!")
+                .isInstanceOf(StackException.class);
     }
 
 }
