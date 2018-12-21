@@ -5,7 +5,7 @@ import org.junit.Test;
 import stack.exception.StackException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class StackTest {
 
@@ -92,4 +92,54 @@ public class StackTest {
                 .isInstanceOf(StackException.class);
     }
 
+    @Test
+    public void handleTopException() {
+        assertThatThrownBy(() ->  stack.top())
+                .hasMessage("Pila vacia, no puedes hacer top por ahora!")
+                .isInstanceOf(StackException.class);
+    }
+
+    @Test
+    public void shouldReturnTrueIfStackIsEmpty() {
+        boolean result = stack.isEmpty();
+        assertTrue(result);
+    }
+
+    @Test
+    public void shouldReturnFalseIfStackIsNotEmpty() {
+
+        stack.push(111);
+
+        boolean result = stack.isEmpty();
+        assertFalse(result);
+    }
+
+    @Test
+    public void shouldReturnTrueIfStackIsFull() {
+        stack.push(111);
+        stack.push(222);
+        stack.push(333);
+
+        boolean result = stack.isFull();
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void shouldReturnFalseIfStackIsNotFull() {
+
+        boolean result = stack.isFull();
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void shouldCheckIfStackIsDynamic() {
+        stack.push(111);
+        stack.push(222);
+        stack.push(333);
+        stack.push(444);
+
+        assertEquals(4, stack.size());
+    }
 }
