@@ -11,6 +11,7 @@ public class StackTest {
 
     Stack stack;
 
+
     @Before
     public void setUp() {
         stack = new Stack();
@@ -51,6 +52,37 @@ public class StackTest {
 
         assertEquals(34242, elementOne);
         assertEquals(112312, elementTwo);
+    }
+
+    @Test
+    public void topElementFromStack() {
+        stack.push(112312);
+
+        int elementOne = stack.top();
+
+        assertEquals(112312, elementOne);
+        assertEquals(1, stack.size());
+    }
+
+    @Test
+    public void printStack() {
+        stack.push(7777);
+        stack.push(2222);
+        stack.push(5555);
+
+        String printStack = stack.print();
+
+        assertEquals("bottom-->[7777,2222,5555]<--top",printStack);
+
+    }
+
+    @Test
+    public void printEmptyStack() {
+
+        String printStack = stack.print();
+
+        assertEquals("bottom-->[]<--top",printStack);
+
     }
 
     @Test
